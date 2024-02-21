@@ -25,9 +25,10 @@ const Card = () => {
         const user = await login({ username, password });
         if (user) {
             dispatch(loginSuccess());
+            localStorage.setItem('userCredentials', JSON.stringify(user))
             navigate('/')
         } else {
-            console.log('Invalid user!');
+            alert('Invalid user!');
         }
     };
 
