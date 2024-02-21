@@ -1,0 +1,25 @@
+.header {
+  padding: 1px 0;
+  width: 100%;
+  background: linear-gradient(90deg, #396afc 0%, #2948ff 100%);
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  margin: 0 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  .mind {
+    padding-right: 10px;
+    font-weight: 800;
+    font-size: 30px;
+    
+  }
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

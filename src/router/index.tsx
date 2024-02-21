@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import HomePage from "../pages/Home";
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
+import Header from "../layouts/Header";
 
 const ProtectedRoute = () => {
     const navigate = useNavigate();
@@ -26,8 +27,13 @@ export default createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
             {
-                element: <HomePage />,
-                path: "/",
+                element: <Header />,
+                children: [
+                    {
+                        element: <HomePage />,
+                        path: "/",
+                    }
+                ]
             },
         ],
     },
