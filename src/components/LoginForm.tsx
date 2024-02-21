@@ -1,28 +1,23 @@
 import { Button, Card, Form, Input, Typography, Col, Row, message, Grid } from 'antd'
 import styles from '../styles/desktop-login.module.scss'
-import login from '../apis/login'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { RootState } from '../app/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { signInAsync } from '../pages/Login/authSlice'
+import { UserType } from '../models'
 const { Title } = Typography
 const { useBreakpoint } = Grid
 
-type FormType = {
-  username: string
-  password: string
-}
-
 const FormLogin = () => {
 
-  const [form] = Form.useForm<FormType>()
-  const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm<UserType>()
+  const user = useSelector((state: RootState) => state.auth)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const screens = useBreakpoint()
-
-  const handleSignIn = async (values: FormType) => {
-    const { username, password } = values
-    setLoading(true)
-    await login(username, password)
-    setLoading(false)
+  const { loading } = user
+  const handleSignIn = async (values: UserType) => {
+    await dispatch(signInAsync(values))
     navigate('/')
     message.success('Login success!')
   }
@@ -32,12 +27,14 @@ const FormLogin = () => {
     }
     return 'center'
   }
+
   const handlePadding = () => {
     if (screens.lg || screens.xxl || screens.xl) {
       return { marginRight: 20, width: '100%' }
     }
     return { marginRight: 0, width: '100%' }
   }
+
   return (
     <Row justify={handleShowPosition()} style={handlePadding()}>
       <Col md={10} sm={20}>

@@ -1,9 +1,12 @@
 
-import DeskTopLogin from './components/DeskTopLogIn';
+import Background from '../../components/Background';
+import FormLogin from '../../components/LoginForm';
 
 const Login = () => {
 
-    return <DeskTopLogin />
+    return <Background>
+        <FormLogin />
+    </Background>
 }
 
 export default Login
