@@ -1,0 +1,19 @@
+.container {
+    
+}
+
+.image {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    position: relative;
+    object-fit: cover;
+}
+
+.formCard {
+    position: absolute;
+    right: 25px;
+    top: 20%;
+    bottom: 0;
+    translate: translateY(-50%);
+}
