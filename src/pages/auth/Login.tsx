@@ -1,8 +1,9 @@
 import { FunctionComponent, useState } from "react";
-import styles from "./styles/Desktop.module.css";
+import styles from "./Login.module.scss";
 import { Input, Button } from "antd";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { login } from "../app/reducers/authSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { login } from "./authSlice";
+// import { login } from "../app/reducers/authSlice";
 
 const Desktop: FunctionComponent = () => {
 
@@ -11,9 +12,11 @@ const Desktop: FunctionComponent = () => {
 
   const dispatch = useAppDispatch()
 
+  const token = useAppSelector(state => state.auth.token)
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
-  const error = useAppSelector(state => state.auth.error)
-  
+  console.log("token",token)
+  // const error = useAppSelector(state => state.auth.error)
+
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -28,12 +31,12 @@ const Desktop: FunctionComponent = () => {
       alert("Username or password is mising")
       return
     }
-    dispatch(login({ username, password }))
+    dispatch(login({
+      username, password
+    }))
     if (isAuthenticated)
     {
       alert("Login successfully!")
-    } else {
-      alert("Error!")
     }
   }
 
