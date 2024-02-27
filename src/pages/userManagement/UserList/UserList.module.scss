@@ -1,0 +1,33 @@
+.userListContainer {
+
+.footer,
+.titleBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table {
+    position: relative;
+}
+
+.leftTitle,
+.leftFooter,
+.rightTitle {
+    display: flex;
+    gap: 5px;
+    max-width: fit-content;
+}
+.leftTitle{
+    margin-left: 0;
+}
+
+.rightTitle {
+    margin-right: 0;
+}
+
+.footer {
+    width: 1000px;
+    position: absolute;
+    bottom: 15px;
+}
+}

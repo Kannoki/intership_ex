@@ -1,0 +1,40 @@
+.topnav {
+    width: 100%;
+    height: 50px;
+    background-color: #396afc;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    // position: relative;
+    // top: 0;
+  }
+  .logo {
+    display: flex;
+    // justify-content: center;
+    // align-items: baseline;
+  }
+  .menuItem {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .activeNav {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .leftMenu {
+    margin-right: 0;
+    display: flex;
+    gap: 20px;
+    }
+  

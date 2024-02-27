@@ -1,0 +1,19 @@
+.mindLogo {
+    font-weight: bold;
+    font-size: x-large;
+    color: white;
+    font-family: var(--font-segoe-ui);
+    margin-right: 5px;
+}
+
+.portalLogo {
+    font-size: large;
+    color: white;
+    font-family: var(--font-segoe-ui);
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
