@@ -1,0 +1,25 @@
+.container {
+  margin-top: 10px;
+}
+.user-num {
+  color: #1890ff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}

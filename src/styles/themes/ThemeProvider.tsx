@@ -6,10 +6,10 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <ConfigProvider
             theme={{
+                
                 components: {
                     Card: {
-                        colorBgBase: 'transapent',
-                        colorBgContainer: 'transapent'
+                        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
                     },
                     Input: {
                         hoverBg: 'transapent',
@@ -18,6 +18,9 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                     },
                     Button: {
 
+                    },
+                    Table: {
+                        headerBg: "#DADADA",
                     }
                 },
 

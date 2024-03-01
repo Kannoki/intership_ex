@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { UserType } from "../../models";
+import { AuthType } from "../../models";
 import authApi from "../../apis/authApi";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
@@ -7,7 +7,7 @@ import { clearStorage, setStorge } from "../../utils";
 
 const { login } = authApi;
 export interface AuthInterface {
-  user: UserType | null;
+  user: AuthType | null;
   loading: boolean;
 }
 const initialState: AuthInterface = {
@@ -17,9 +17,10 @@ const initialState: AuthInterface = {
 
 export const signInAsync = createAsyncThunk(
   "auth/signIn",
-  async (user: UserType) => {
+  async (user: AuthType) => {
     const { username, password } = user;
     const response = await login(username, password);
+   
     return response;
   }
 );
@@ -28,7 +29,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<UserType>) => {
+    signIn: (state, action: PayloadAction<AuthType>) => {
       const user = action.payload;
       state.user = user;
       setStorge("user", JSON.stringify(user));

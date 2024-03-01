@@ -1,14 +1,10 @@
-import { setStorge } from "../utils";
+import httpClient from "../libs/axios";
+import { AuthReponse } from "../models";
 
 const authApi = {
-  login: (username: string, password: string) => {
+  login: (username: string, password: string): Promise<AuthReponse> => {
     const user = { username, password };
-    setStorge("user", JSON.stringify(user));
-    return new Promise((resolve) =>
-      setTimeout(() => {
-        resolve("login success");
-      }, 2000)
-    );
+    return httpClient.post("/auth/login", user);
   },
 };
 export default authApi;

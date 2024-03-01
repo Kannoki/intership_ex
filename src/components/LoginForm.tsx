@@ -1,25 +1,38 @@
 import { Button, Card, Form, Input, Typography, Col, Row, message, Grid } from 'antd'
 import styles from '../styles/desktop-login.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { RootState } from '../app/store'
-import { useDispatch, useSelector } from 'react-redux'
-import { signInAsync } from '../pages/Login/authSlice'
-import { UserType } from '../models'
+// import { RootState } from '../app/store'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { signInAsync } from '../pages/Login/authSlice'
+import { AuthType } from '../models'
+import authApi from '../apis/authApi'
+import { useState } from 'react'
+import { setStorge } from '../utils'
 const { Title } = Typography
 const { useBreakpoint } = Grid
-
+const { login } = authApi
 const FormLogin = () => {
 
-  const [form] = Form.useForm<UserType>()
-  const user = useSelector((state: RootState) => state.auth)
-  const dispatch = useDispatch()
+  const [form] = Form.useForm<AuthType>()
+  // const user = useSelector((state: RootState) => state.auth)
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const screens = useBreakpoint()
-  const { loading } = user
-  const handleSignIn = async (values: UserType) => {
-    await dispatch(signInAsync(values))
-    navigate('/')
-    message.success('Login success!')
+  const handleSignIn = async (values: AuthType) => {
+    const { username, password } = values
+    setLoading(true)
+    try {
+      const response = await login(username, password);
+      console.log(response)
+      setStorge('token', JSON.stringify(response))
+      navigate('/')
+      message.success('Login success!')
+    } catch (error) {
+      message.error('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
+
   }
   const handleShowPosition = () => {
     if (screens.lg || screens.xxl || screens.xl) {

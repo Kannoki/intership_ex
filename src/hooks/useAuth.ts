@@ -1,12 +1,10 @@
 import { useDispatch } from "react-redux";
-import { UserType } from "../models";
-import { getStorage } from "../utils";
-import { signIn } from "../pages/Login/authSlice";
+import { AuthType, Token } from "../models";
+import { getStorage, setStorge } from "../utils";
+// import { signIn } from "../pages/Login/authSlice";
 
 const useAuth = () => {
-  const dispatch = useDispatch();
-  const user = getStorage("user") as UserType;
-  dispatch(signIn(user));
+  const user = getStorage("token") as Token;
   return user;
 };
 export default useAuth;

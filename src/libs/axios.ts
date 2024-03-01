@@ -1,40 +1,80 @@
-import axios from "axios";
-import { getStorage } from "../utils";
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
+import { getStorage, setStorge } from "../utils";
+import { Token } from "../models/token";
+import { AuthReponse } from "../models";
+
+const baseURL = process.env.VITE_API;
 
 const httpClient = axios.create({
-  baseURL: "http://localhost:5173",
+  baseURL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
-const token = getStorage("token");
-if (token) {
-  axios.defaults.headers.Authorization = "Bearer " + token;
-}
 
-const refreshTokenFunc = async (refreshToken: string) => {
-  const res = await httpClient.post("/auth/refresh-token", {
-    refreshToken,
+const refreshTokenFunc = async (refresh_token: string) => {
+  const res: AuthReponse = await httpClient.post("/auth/token", {
+    refresh_token,
   });
-  return res.data.accessToken;
+
+  setStorge(
+    "token",
+    JSON.stringify({
+      access_token: res.access_token,
+      refresh_token: res.refresh_token,
+    })
+  );
 };
+
+const onResponseSuccess = (response: AxiosResponse) => {
+  return response.data;
+};
+
+const onResponseError = async (error: AxiosError) => {
+  if (error.response) {
+    return Promise.reject(error.response);
+  }
+  return Promise.reject(error);
+};
+
+httpClient.interceptors.response.use(onResponseSuccess, onResponseError);
+
+httpClient.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = getStorage("token") as Token;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token.access_token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 httpClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
     if (
-      (error.response.status === 401 || error.response.status === 403) &&
+      (error.status === 401 || error.status === 403) &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
-      const refreshToken = await getStorage("refresh");
-      const newAccessToken = await refreshTokenFunc(refreshToken);
-      originalRequest.headers = {
-        Authorization: "Bearer " + newAccessToken,
-      };
-      return httpClient(originalRequest);
+      const token = getStorage("token") as Token;
+      const refreshToken = token.refresh_token;
+      if (refreshToken) {
+        const result = await refreshTokenFunc(refreshToken);
+        const newAccessToken = result.access_token;
+        setStorge("token", JSON.stringify(newAccessToken));
+        originalRequest.headers = {
+          Authorization: "Bearer " + newAccessToken,
+        };
+        return httpClient(originalRequest);
+      }
     }
     return Promise.reject(error);
   }
