@@ -13,8 +13,8 @@ import { FaUser } from "react-icons/fa";
 import chartApi from "api/chartApi";
 import { Line } from "react-chartjs-2";
 import { registerCharts } from "utils/registerCharts";
-import { Chart } from 'chart.js';
 import 'chartjs-adapter-moment'
+import { chartColors } from "utils/ChartColor";
 
 registerCharts()
 const { Text } = Typography;
@@ -93,80 +93,72 @@ const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
 const TestUser: FC = () => {
 
     const [chartData, setChartData] = useState<any>([])
+    const tsData = chartData.total?.map((item: any) => {
+        return item.ts
+    });
+    const chartList: { label: string; data: any, backgroundColor: string, borderColor: string, borderWidth: number }[] = []
+    const [data, setData] = useState({
+        labels: tsData || [],
+        datasets: [
+            {
+                label: '',
+                data: [],
+                backgroundColor: '',
+                borderColor: '',
+                borderWidth: 1
+            }
+        ]
+    });
 
     useEffect(() => {
         chartApi.getChartApi()
             .then(response => setChartData(response))
     }, [])
 
-    const emsData = chartData.EMS?.map((item: any) => {
-        return item.value;
-    });
-    const storageData = chartData.STORAGE?.map((item: any) => {
-        return item.value;
-    });
-    const totalData = chartData.total?.map((item: any) => {
-        return item.value;
-    });
-    const tsData = chartData.total?.map((item: any) => {
-        return moment(item.ts).format('DD.MM.YYYY');
-        // return item.ts
-    });
+    {
+        let i: number = 0;
+        for (const key in chartData) {
+            const indexedItem = chartData[key];
+            const chartItem = {
+                label: key,
+                data: indexedItem.map((item: any) => item.value),
+                backgroundColor: chartColors[i],
+                borderColor: chartColors[i],
+                borderWidth: 1
+            }
+            chartList.push(chartItem)
+            i += 1;
+        }
+    }
+
+    useEffect(() => {
+        setData({
+            labels: tsData || [],
+            datasets: chartList
+        })
+    }, [chartList])
+
+    // const data = {
+    //     labels: tsData || [],
+    //     datasets: chartList
+    // }
 
     const options = {
         scales: {
-          y: {
-            title: {
-              display: true,
-              text: 'Test'
+            x: {
+                type: 'time' as const,
+                time: {
+                    unit: 'month' as const
+                }
             }
-          },
-          x: {
-           
-          }
         },
         plugins: {
-          legend: {
-            display: false,
-          },
+            legend: {
+                display: true,
+            },
         }
-      }
-
-    const data = {
-        labels: tsData || [],
-        datasets: [{
-            label: 'EMS',
-            data: emsData || [],
-            backgroundColor: [
-                'rgb(153, 102, 255)'
-            ],
-            borderColor: [
-                'rgb(153, 102, 255)'
-            ],
-            borderWidth: 1
-        }, {
-            label: 'STORAGE',
-            data: storageData || [],
-            backgroundColor: [
-                'rgba(255, 159, 64)'
-            ],
-            borderColor: [
-                'rgba(255, 159, 64)'
-            ],
-            borderWidth: 1
-        },
-        {
-            label: 'Total',
-            data: totalData || [],
-            backgroundColor: [
-                'rgba(75, 192, 192)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192)'
-            ],
-            borderWidth: 1
-        }]
     }
+
     return (
         <div className={styles.testUserComponent}>
             <div className={styles.statiscalComponent}>
@@ -204,7 +196,7 @@ const TestUser: FC = () => {
                         </Space>
                     </div>
                     <div className="graph-container">
-                        {/* <Line options={options} data={data} style={{ maxHeight: '250px' }} /> */}
+                        <Line options={options} data={data} style={{ maxHeight: '250px' }} />
                     </div>
                 </div>
             </div>

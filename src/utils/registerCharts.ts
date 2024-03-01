@@ -19,7 +19,7 @@ import {
       ArcElement,
       BarElement,
       TimeScale,
-      CategoryScale,
+      // CategoryScale,
       Legend,
       LineElement,
       LinearScale,
