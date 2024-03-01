@@ -3,6 +3,12 @@ export interface User {
     password: string;
 }
 
+export interface LoginResponse {
+    access_token: string;
+    refresh_token: string;
+    data: string
+}
+
 export interface DataType {
     key?: React.Key;
     name: string;

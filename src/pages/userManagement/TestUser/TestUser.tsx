@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import styles from './TestUser.module.scss'
 import { FaUserFriends } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
@@ -10,8 +10,13 @@ import { DataType } from "models";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import LineChart from "./LineChart";
+import chartApi from "api/chartApi";
+import { Line } from "react-chartjs-2";
+import { registerCharts } from "utils/registerCharts";
+import { Chart } from 'chart.js';
+import 'chartjs-adapter-moment'
 
+registerCharts()
 const { Text } = Typography;
 
 const userNumberStyle: CSSProperties = {
@@ -86,6 +91,82 @@ const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
 };
 
 const TestUser: FC = () => {
+
+    const [chartData, setChartData] = useState<any>([])
+
+    useEffect(() => {
+        chartApi.getChartApi()
+            .then(response => setChartData(response))
+    }, [])
+
+    const emsData = chartData.EMS?.map((item: any) => {
+        return item.value;
+    });
+    const storageData = chartData.STORAGE?.map((item: any) => {
+        return item.value;
+    });
+    const totalData = chartData.total?.map((item: any) => {
+        return item.value;
+    });
+    const tsData = chartData.total?.map((item: any) => {
+        return moment(item.ts).format('DD.MM.YYYY');
+        // return item.ts
+    });
+
+    const options = {
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Test'
+            }
+          },
+          x: {
+           
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        }
+      }
+
+    const data = {
+        labels: tsData || [],
+        datasets: [{
+            label: 'EMS',
+            data: emsData || [],
+            backgroundColor: [
+                'rgb(153, 102, 255)'
+            ],
+            borderColor: [
+                'rgb(153, 102, 255)'
+            ],
+            borderWidth: 1
+        }, {
+            label: 'STORAGE',
+            data: storageData || [],
+            backgroundColor: [
+                'rgba(255, 159, 64)'
+            ],
+            borderColor: [
+                'rgba(255, 159, 64)'
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Total',
+            data: totalData || [],
+            backgroundColor: [
+                'rgba(75, 192, 192)'
+            ],
+            borderColor: [
+                'rgba(75, 192, 192)'
+            ],
+            borderWidth: 1
+        }]
+    }
     return (
         <div className={styles.testUserComponent}>
             <div className={styles.statiscalComponent}>
@@ -123,7 +204,7 @@ const TestUser: FC = () => {
                         </Space>
                     </div>
                     <div className="graph-container">
-                        <LineChart />
+                        {/* <Line options={options} data={data} style={{ maxHeight: '250px' }} /> */}
                     </div>
                 </div>
             </div>

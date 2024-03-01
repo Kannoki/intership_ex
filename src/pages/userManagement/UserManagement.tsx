@@ -3,7 +3,6 @@ import { Tabs, TabsProps, Typography } from 'antd';
 import styles from './UserManagement.module.scss'
 import UserList from "./UserList/UserList";
 import TestUser from "./TestUser/TestUser";
-import Header from "components/Layout/Header";
 
 const { Title } = Typography;
 
@@ -29,7 +28,6 @@ const UserManagement: FC = () => {
 
     return (
         <>
-        <Header />
         <div className={styles.container}>
             <div className={styles.menuTitle}>
                 <Title level={5}>QUẢN LÝ NGƯỜI DÙNG</Title>

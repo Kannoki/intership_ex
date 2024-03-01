@@ -7,9 +7,9 @@ import { history } from "index";
 function* handleLogin(action: PayloadAction<LoginPayload>): Generator<any, void, any> {
     try {
         const data = yield authApi.login(action.payload)
-        console.log(data)
-        yield put(loginSuccess(data.token))
-        localStorage.setItem("access_token", data.token)
+        yield put(loginSuccess(data.access_token))
+        window.localStorage.setItem("access_token", data.access_token)
+        window.localStorage.setItem("refresh_token", data.refresh_token)
 
         yield call(history.push, "/users")
     }

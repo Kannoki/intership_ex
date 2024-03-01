@@ -9,6 +9,7 @@ import {
     LinearScale,
     PointElement,
     RadialLinearScale,
+    TimeScale,
     Title,
     Tooltip,
   } from "chart.js"
@@ -17,6 +18,7 @@ import {
     Chart.register(
       ArcElement,
       BarElement,
+      TimeScale,
       CategoryScale,
       Legend,
       LineElement,

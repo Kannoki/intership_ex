@@ -3,8 +3,6 @@ import { Tabs, TabsProps, Typography } from 'antd';
 import styles from './DeviceManagement.module.scss'
 import DeviceList from "./deviceList/DeviceList";
 import DeviceTypeList from "./deviceTypeList/DeviceTypeList";
-import Header from "components/Layout/Header";
-
 
 const { Title } = Typography;
 
@@ -31,7 +29,6 @@ const DeviceManagement: FC = () => {
 
     return (
         <>
-        <Header />
         <div className={styles.container}>
             <div className={styles.menuTitle}>
                 <Title level={5}>QUẢN LÝ THIẾT BỊ</Title>

@@ -14,8 +14,8 @@ const inputStyle: React.CSSProperties = {
 };
 
 const Login: FC = () => {
-    const [username, setUsername] = useState("eve.holt@reqres.in");
-    const [password, setPassword] = useState("cityslicka");
+    const [username, setUsername] = useState("sysadmin@iotmind.vn");
+    const [password, setPassword] = useState("123456");
 
     const dispatch = useAppDispatch()
 
@@ -42,6 +42,16 @@ const Login: FC = () => {
                         labelCol={{ span: 16 }}
                         wrapperCol={{ span: 16 }}
                         autoComplete="off"
+                        fields={[
+                            {
+                              name: "username",
+                              value: username,
+                            },
+                            {
+                              name: "password",
+                              value: password
+                            }
+                          ]}
                     >
                         <Form.Item
                             name="username"
@@ -50,7 +60,7 @@ const Login: FC = () => {
                         >
                             <Input style={inputStyle}
                                 placeholder='Username'
-                                value={username}
+                                value="rrrr"
                                 onChange={handleUsernameChange}
                             />
                         </Form.Item>
