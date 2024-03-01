@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './login.module.scss'
-import Card from '../../components/card/Card';
+import FormLogin from '../../components/form/FormLogin';
+
 
 
 const Login = () => {
@@ -8,7 +9,7 @@ const Login = () => {
         <div className={styles.container}>
             <img src='./image/background.jpg' alt='background' className={styles.image} />
             <div className={styles.formCard}>
-                <Card />
+                <FormLogin />
             </div>
         </div>
     )

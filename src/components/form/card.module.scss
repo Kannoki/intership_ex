@@ -1,12 +1,13 @@
 .container {
+    padding: 24px;
     width: 552px;
     height: 401px;
-    padding: 24px;
     border-radius: 12px;
     border: 1px;
-    background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
 }
 
 .wrapper {
@@ -48,16 +49,17 @@
     padding: 10px;
     font-size: 20px;
     text-transform: uppercase;
-    color: #fff;
-    background: rgba(1, 103, 197, 1);
     border: none;
     border-radius: 2px;
+    color: #fff;
+    background: rgba(1, 103, 197, 1);
+    cursor: pointer;
 }
 
 .readyaccont {
     margin-top: 25px;
-    color: #fff;
     text-align: center;
+    color: #fff;
 }
 
 .linkLogin {

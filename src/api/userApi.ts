@@ -5,12 +5,7 @@ interface UserDataFromAPI {
     users: User[];
 }
 
-interface LoginCredentials {
-    username: string;
-    password: string;
-}
-
-const login = async (credentials: LoginCredentials): Promise<User | null> => {
+const login = async (credentials: User): Promise<User | null> => {
     try {
         const response: AxiosResponse<UserDataFromAPI> = await axios.get('https://dummyjson.com/users');
         const users = response.data.users;

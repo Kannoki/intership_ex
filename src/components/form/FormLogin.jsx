@@ -5,38 +5,61 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '../../pages/login/userSlice';
+import axiosClient from '../../api/axiosClient';
 
-const Card = () => {
+const FormLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleInputName = (e: any) => {
+    const handleInputName = (e) => {
         setUsername(e.target.value);
     };
 
-    const handleInputPassword = (e: any) => {
+    const handleInputPassword = (e) => {
         setPassword(e.target.value);
     };
 
     const handleLoginEvent = async () => {
-        const user = await login({ username, password });
-        if (user) {
-            dispatch(loginSuccess());
-            localStorage.setItem('userCredentials', JSON.stringify(user))
-            navigate('/')
-        } else {
-            alert('Invalid user!');
+
+        // const user = await login({ username, password });
+        // if (user) {
+        //     dispatch(loginSuccess());
+        //     localStorage.setItem('userCredentials', JSON.stringify(user))
+        //     navigate('/')
+        // } else {
+        //     alert('Invalid user!');
+        // }
+
+        try {
+            if (!username || !password) {
+                throw new Error('Username and password are required');
+            } else {
+                const response = await axiosClient.post('/api/auth/login', {
+                    username: username,
+                    password: password
+                });
+                
+                if (response.access_token) {
+                    dispatch(loginSuccess());
+                    localStorage.setItem('access_token', response.access_token);
+                    navigate('/managerment/user')
+                }
+            }
+             
+
+        } catch (error) {
+            console.error('Login failed:', error);
         }
     };
 
-    useEffect(() => {
-        axios.get('https://dummyjson.com/users')
-            .then(res => console.log(res.data.users))
-            .catch(err => console.log(err))
-    }, [])
+    // useEffect(() => {
+    //     axios.get('https://dummyjson.com/users')
+    //         .then(res => console.log(res.data.users))
+    //         .catch(err => console.log(err))
+    // }, [])
 
     return (
         <div className={styles.container}>
@@ -71,4 +94,5 @@ const Card = () => {
     )
 }
 
-export default Card
+export default FormLogin
+
