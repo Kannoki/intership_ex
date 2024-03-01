@@ -4,7 +4,6 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { getStorage, setStorge } from "../utils";
-import { Token } from "../models/token";
 import { AuthReponse } from "../models";
 
 const baseURL = process.env.VITE_API;
@@ -29,6 +28,7 @@ const refreshTokenFunc = async (refresh_token: string) => {
       refresh_token: res.refresh_token,
     })
   );
+  return res.access_token;
 };
 
 const onResponseSuccess = (response: AxiosResponse) => {
@@ -46,7 +46,7 @@ httpClient.interceptors.response.use(onResponseSuccess, onResponseError);
 
 httpClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = getStorage("token") as Token;
+    const token = getStorage("token") as AuthReponse;
     if (token) {
       config.headers.Authorization = `Bearer ${token.access_token}`;
     }
@@ -64,11 +64,10 @@ httpClient.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
-      const token = getStorage("token") as Token;
+      const token = getStorage("token") as AuthReponse;
       const refreshToken = token.refresh_token;
       if (refreshToken) {
-        const result = await refreshTokenFunc(refreshToken);
-        const newAccessToken = result.access_token;
+        const newAccessToken = await refreshTokenFunc(refreshToken);
         setStorge("token", JSON.stringify(newAccessToken));
         originalRequest.headers = {
           Authorization: "Bearer " + newAccessToken,

@@ -2,32 +2,33 @@ import { Button, Card, Col, Divider, Flex, Image, Row, Space, Typography } from 
 import { FaRegTrashAlt, FaInfoCircle } from "react-icons/fa";
 import image from '../images/saitama.webp'
 import { QrcodeOutlined } from '@ant-design/icons'
+import styles from '../styles/card-device.module.scss'
 const { Text } = Typography
 const CardDevice = () => {
     return (
         <Card bodyStyle={{ padding: 2 }} style={{ margin: 5 }}>
             <Row justify={'space-between'}>
                 <Col md={10} sm={0} xs={0}>
-                    <Image src={image} preview={false} height={'100%'} style={{ padding: 2, borderRight: '1px solid #DADADA', borderRadius: 10, objectFit: 'cover' }} />
+                    <Image src={image} preview={false} height={'100%'} className={styles.image} />
                 </Col>
                 <Col md={14} sm={24}>
-                    <Row style={{ marginLeft: 10 }}>
+                    <Row className={styles.content}>
                         <Space direction='vertical'>
                             <Flex vertical justify='flex-end'>
                                 <Row align={'middle'} justify={'space-between'}>
-                                    <Text style={{ fontSize: 20, fontWeight: 500 }}>Energy Device 1CT</Text>
+                                    <Text className={styles.title}>Energy Device 1CT</Text>
                                     <Button icon={<QrcodeOutlined />} type='text' />
                                 </Row>
                                 <Divider />
                             </Flex>
 
-                            <Flex style={{ width: '100%' }}>
+                            <Flex>
                                 <Col span={10}>
                                     <Space direction='vertical'>
-                                        <Text style={{ fontStyle: 'italic' }}>Gateway</Text>
-                                        <Text style={{ fontStyle: 'italic' }}>Ngày tạo</Text>
-                                        <Text style={{ fontStyle: 'italic' }}>Số TB lắp đặt</Text>
-                                        <Text style={{ fontStyle: 'italic' }}>Mô tả</Text>
+                                        <Text className={styles.property}>Gateway</Text>
+                                        <Text className={styles.property}>Ngày tạo</Text>
+                                        <Text className={styles.property}>Số TB lắp đặt</Text>
+                                        <Text className={styles.property}>Mô tả</Text>
                                     </Space>
                                 </Col>
                                 <Col span={14}>
@@ -49,8 +50,6 @@ const CardDevice = () => {
                                 </Col>
                             </Flex>
                         </Space>
-
-
                     </Row>
                 </Col>
             </Row>

@@ -1,8 +1,6 @@
-// import { Typography } from 'antd'
-import { Col, Row, Typography } from "antd";
+import { Col, Row } from "antd";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from '../styles/sub-header.module.scss'
-// const { Text, Title } = Typography
 
 interface SubHeaderProps {
     label: string;
@@ -12,14 +10,11 @@ interface SubHeaderProps {
     }[];
 }
 
-const { } = Typography;
-
 const SubHeader = (props: SubHeaderProps) => {
     const { pathname } = useLocation()
     const { label, items } = props;
     return (
         <>
-
             <Row align={"middle"} style={{ width: '100%', background: '#fff', padding: 20 }}>
                 <Col md={6} sm={24} xs={24}>
                     <span style={{ fontSize: '1.3rem', fontWeight: 500 }}>{label}</span>
@@ -33,7 +28,7 @@ const SubHeader = (props: SubHeaderProps) => {
                 </Col>
             </Row>
 
-            <div style={{ margin: '10px 0' }}>
+            <div className={styles.layout}>
                 <Outlet />
             </div>
 

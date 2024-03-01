@@ -31,7 +31,6 @@ const fontSize = 18
 
 const Header = () => {
     const location = useLocation();
-
     return (
         <>
             <Row className={styles["site-header"]}>
@@ -62,10 +61,10 @@ const Header = () => {
                 <nav className={styles["site-navigation"]}>
                     <ul className={styles.nav}>
                         <li>
-                            <BellOutlined className={styles.item} />
+                            <BellOutlined className={styles.item} style={{ fontSize }} />
                         </li>
                         <li>
-                            <UserOutlined className={styles.item} />
+                            <UserOutlined className={styles.item} style={{ fontSize }} />
                         </li>
                     </ul>
                 </nav>
@@ -91,6 +90,7 @@ const Header = () => {
                                                         ? styles.active
                                                         : styles.item
                                                 }
+
                                             />
                                         </Link>
                                     </li>
