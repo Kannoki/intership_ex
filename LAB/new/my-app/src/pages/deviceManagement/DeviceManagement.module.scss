@@ -1,0 +1,22 @@
+.container {
+    height: 100vh;
+    width: auto;
+    position: relative;
+    background-color: #b2b2b2;
+  }
+  .menu {
+    margin: 0 10px 10px 10px;
+    background-color: rgb(255, 255, 255);
+    width: '100px';
+  }
+  
+  .content {
+    height: "150px";
+    margin: 0 10px 10px 10px;
+  }
+  
+  .menuTitle {
+    margin: 0 50px;
+    position: absolute;
+    // padding: 10px;
+  }
