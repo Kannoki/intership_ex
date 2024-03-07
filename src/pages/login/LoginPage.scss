@@ -1,6 +1,5 @@
 .bgr {
   display: flex;
-
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -11,28 +10,58 @@
 }
 
 .form-card {
-  background-color: rgb(0 0 0 / 0.2);
-  box-shadow: 0.1rem 0.1rem 0.4rem 0.4rem rgb(0 0 0 / 0.6);
+  background-color: rgb(0 0 0 / 0.1);
+  box-shadow: 0.05rem 0.05rem 0.1rem 0.1rem rgb(0 0 0 / 0.2);
   width: max-content;
   padding: 1rem 1rem 1rem 1rem;
   margin: 0 1rem 0 1rem;
+  border: 0.01rem solid rgb(0 0 0 / 0.6);
 }
+
+.logo {
+  font-size: x-large;
+  text-align: center;
+}
+.logo span {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
 .input-login {
-  border: 1rem;
-  border-color: white;
+  border: 1px solid white;
   outline: none;
+  padding: 0.4rem;
   background-color: transparent;
-  ::-ms-input-placeholder {
-    color: white;
-  }
+
+  margin: 0.75rem 0;
   color: white;
+}
+.input-login::placeholder {
+  color: white;
+}
+
+.btn-login {
+  text-transform: uppercase;
+  margin: 2rem 0 1rem 0;
+}
+
+.tad-link {
+  color: rgb(7, 119, 239);
 }
 @media (min-width: 750px) {
   .form-card {
-    background-color: rgb(0 0 0 / 0.2);
-    box-shadow: 0.1rem 0.1rem 0.4rem 0.4rem rgb(0 0 0 / 0.6);
     border-radius: 1rem;
-    width: max-content;
-    padding: 1rem 1rem 1rem 1rem;
+  }
+  .logo {
+    font-size: x-large;
+    text-align: start;
+  }
+}
+
+@media (min-width: 980px) {
+  .bgr {
+    display: flex;
+    align-items: center;
+    justify-content: end;
   }
 }
