@@ -1,0 +1,43 @@
+$bgr_header: rgb(81, 46, 235);
+$color_icon: #fff;
+.header {
+    background-color: $bgr_header;
+}
+.headerLayout {
+    display: 'flex';
+    flex-direction: row;
+    align-items: 'center';
+    justify-content: space-between;
+    background-color: $bgr_header;
+}
+
+.IconHeader {
+    display: block;
+    color: $color_icon;
+    background-color: $bgr_header;
+}
+
+.GroupIconAvt {
+    width: 80px;
+}
+.IconBell {
+    margin-right: 10px;
+    font-size: 20px;
+    color: $color_icon;
+}
+.avatarIcon {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 460px) {
+    .IconHeader {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 8vh;
+        display: flex;
+        justify-content: center;
+        background-color: #125be2;
+    }
+}

@@ -1,0 +1,16 @@
+.tableUser {
+    height: 70vh;
+}
+.ant-pagination {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+
+@media screen and (max-width: 460px) {
+    .ant-pagination {
+        bottom: 10vh;
+        height: 15px;
+        right: 5px;
+    }
+}

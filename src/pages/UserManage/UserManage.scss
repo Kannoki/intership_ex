@@ -1,0 +1,28 @@
+.boxNavUserManage {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    background-color: #fff;
+}
+.titleUserManage {
+    color: #000;
+}
+.navUserManage {
+    width: 460px;
+}
+
+@media screen and (max-width: 460px) {
+    .boxNavUserManage {
+        flex-direction: column;
+    }
+    .titleUserManage {
+        font-size: 12px;
+    }
+    .navUserManage {
+        width: 100vw;
+    }
+    .navUserManage > li {
+        font-size: 8px;
+    }
+}
