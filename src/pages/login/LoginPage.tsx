@@ -1,78 +1,89 @@
 import React from "react";
 import "./LoginPage.scss";
-import { Button, Checkbox, Form, type FormProps, Input, Tag } from "antd";
 
+import { Button, Form, type FormProps, Input, Tag } from "antd";
+import { login } from "../../apis/auth";
+import { useNavigate } from "react-router-dom";
 type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
+  username: string;
+  password: string;
 };
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const onFinish: FormProps<FieldType>["onFinish"] = async ({
+    username,
+    password,
+  }) => {
+    try {
+      const res = await login(username, password);
+      if (res.status === 200) {
+        localStorage.setItem("token", res.data.access_token);
+        navigate("/Home");
+      } else {
+        throw new Error(`${res.status} ${res.statusText}`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    console.log("Success:");
+  };
+
   return (
-    <div className="bgr">
-      <div className="form-card">
-        <p className="logo">
-          <span> MIND</span>PORTAL
-        </p>
+    <>
+      <div className="bgr">
+        <div className="form-card">
+          <p className="logo">
+            <span> MIND</span>PORTAL
+          </p>
 
-        <Form
-          name="basic"
-          labelCol={{}}
-          wrapperCol={{}}
-          style={{}}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Input
-            className="input-login"
-            placeholder="Username"
+          <Form
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            autoComplete="off"
+          >
+            <Form.Item<FieldType>
+              name="username"
+              rules={[
+                { required: true, message: "Please input your username!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password!" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+          <Tag
             style={{
+              width: "100%",
               backgroundColor: "transparent",
-              border: "1px solid #fff",
+              border: "none",
+              color: "white",
+              fontSize: "x-small",
+              textAlign: "center",
             }}
-          />
-
-          <Input
-            className="input-login"
-            placeholder="Password"
-            type="password"
-            style={{
-              backgroundColor: "transparent",
-              border: "1px solid #fff",
-            }}
-          />
-
-          <Button className="btn-login" type="primary" block>
-            Login
-          </Button>
-        </Form>
-        <Tag
-          style={{
-            width: "100%",
-            backgroundColor: "transparent",
-            border: "none",
-            color: "white",
-            fontSize: "x-small",
-            textAlign: "center",
-          }}
-        >
-          Already have account?
-          <a className="tag-link" href="#">
-            Login here
-          </a>
-        </Tag>
+          >
+            Already have account?
+            <a className="tag-link" href="#">
+              Login here
+            </a>
+          </Tag>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
