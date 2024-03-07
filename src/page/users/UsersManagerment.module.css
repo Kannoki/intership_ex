@@ -1,0 +1,20 @@
+.container {
+  background-color: #dfdfdf;
+  height: 100vh;
+  position: relative;
+}
+.table {
+  margin: 0 10px 10px 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.title {
+  margin: 0 50px;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+:global(.ant-tabs-nav-list) {
+  margin-left: 210px;
+  margin-top: 10px;
+}

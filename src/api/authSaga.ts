@@ -14,8 +14,8 @@ function* handleLogin(
   try {
     const data = yield authApi.login(action.payload);
     yield put(loginSuccess(data.access_token));
-    window.localStorage.setItem('access_token', data.access_token);
-    window.localStorage.setItem('refresh_token', data.refresh_token);
+    localStorage.setItem('access_token', data.access_token);
+    localStorage.setItem('refresh_token', data.refresh_token);
 
     // yield call(history.push, "/users")
   } catch (error) {

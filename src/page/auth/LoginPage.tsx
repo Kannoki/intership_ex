@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   const handleSubmit = () => {
     dispatch(authLogin({ username, password }));
-    navigate('/');
+    navigate('/users');
   };
   return (
     <div className={styles.background}>
