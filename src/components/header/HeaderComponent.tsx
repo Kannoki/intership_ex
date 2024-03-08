@@ -1,9 +1,16 @@
 import { Avatar, Space, Tabs, TabsProps, Typography } from 'antd';
 import styles from './Header.module.css';
-import { UserOutlined, HomeOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  HomeOutlined,
+  SettingOutlined,
+  IeCircleFilled,
+} from '@ant-design/icons';
 import Home from '../../page/home/Home';
 import UsersManagerment from '../../page/users/UsersManagerment';
 import { useEffect, useState } from 'react';
+import SettingPage from '../../page/setting/SettingPage';
+import DeviceManager from '../../page/DeviceManagerment/DeviceManager';
 
 type TabPosition = 'top' | 'bottom';
 
@@ -23,7 +30,13 @@ const items: TabsProps['items'] = [
   {
     key: '3',
     label: '',
-    children: 'Content of Tab Pane 3',
+    children: <DeviceManager />,
+    icon: <IeCircleFilled className={styles.icon} />,
+  },
+  {
+    key: '4',
+    label: '',
+    children: <SettingPage />,
     icon: <SettingOutlined className={styles.icon} />,
   },
 ];
@@ -70,8 +83,9 @@ const HeaderComponent = ({ tab = '1' }: { tab: string }) => {
             tabPosition={tabPosition}
             defaultActiveKey={tab}
             items={items}
-            style={{ padding: '0 24px 10px' }}
+            style={{ padding: '0 0 10px' }}
             className={styles.tableDetails}
+            centered
           />
         </div>
         <Space wrap size={16}>

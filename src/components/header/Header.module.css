@@ -5,12 +5,12 @@
 }
 
 .container {
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 .table {
   position: relative;
-  top: -46px;
+  top: -47px;
   color: white;
   background-color: transparent;
 }

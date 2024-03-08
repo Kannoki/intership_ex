@@ -1,7 +1,7 @@
 import { Table, TableColumnsType } from 'antd';
 import { dataSource } from './UsersData';
 import moment from 'moment';
-import ModalAddUser from './components/ModalAddUser';
+import ModalAddUser from '../../../components/ModalAddUsers';
 
 interface RecordType {
   name: string;

@@ -1,0 +1,14 @@
+.tableComponent {
+  width: 100%;
+  margin: 10px;
+}
+.totalItem {
+  position: absolute;
+  max-width: fit-content;
+  bottom: 20px;
+  right: 100px;
+}
+
+:global(.ant-table-cell) {
+  padding-left: 57px;
+}
