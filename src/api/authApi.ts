@@ -1,8 +1,8 @@
-import { User } from '../utils/user.type';
+import { UserAuth } from '../utils/user.type';
 import axiosClient from './axios';
 
 const authApi = {
-  login(data: User): Promise<User> {
+  login(data: UserAuth): Promise<UserAuth> {
     const url = 'api/auth/login';
     return axiosClient.post(url, data);
   },

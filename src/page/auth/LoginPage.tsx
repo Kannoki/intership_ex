@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { authLogin } from '../../app/slice/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
-const inputStyleForm: React.CSSProperties = {
+const inputStyle: React.CSSProperties = {
   color: 'white',
   width: '420px',
   backgroundColor: 'transparent',
@@ -69,7 +69,8 @@ export default function LoginPage() {
               ]}
             >
               <Input
-                style={inputStyleForm}
+                className={styles.input}
+                style={inputStyle}
                 placeholder='Enter your username'
                 value={username}
                 onChange={handleUsernameChange}
@@ -83,7 +84,8 @@ export default function LoginPage() {
               ]}
             >
               <Input.Password
-                style={inputStyleForm}
+                className={styles.input}
+                style={inputStyle}
                 placeholder='Enter your password'
                 value={password}
                 onChange={handlePasswordChange}
@@ -99,7 +101,7 @@ export default function LoginPage() {
                 <Button
                   onClick={handleSubmit}
                   type='primary'
-                  style={{ width: '420px' }}
+                  className={styles.loginButton}
                 >
                   LOGIN
                 </Button>

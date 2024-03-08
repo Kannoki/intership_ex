@@ -1,12 +1,13 @@
-import authApi from './authApi';
+import authApi from '../../api/authApi';
 import { PayloadAction } from '@reduxjs/toolkit';
 import {
   LoginPayload,
   authLogin,
   loginFailed,
   loginSuccess,
-} from '../app/slice/authSlice';
-import { put, takeLeading } from 'redux-saga/effects';
+  navigateToUsers,
+} from '../slice/authSlice';
+import { call, put, takeLeading } from 'redux-saga/effects';
 
 function* handleLogin(
   action: PayloadAction<LoginPayload>
@@ -17,7 +18,7 @@ function* handleLogin(
     localStorage.setItem('access_token', data.access_token);
     localStorage.setItem('refresh_token', data.refresh_token);
 
-    // yield call(history.push, "/users")
+    yield put(navigateToUsers());
   } catch (error) {
     yield put(loginFailed(''));
   }

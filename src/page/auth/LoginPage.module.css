@@ -43,6 +43,7 @@
 :global(.ant-input::-webkit-input-placeholder) {
   color: white;
 }
+
 .loginForm {
   width: 450px;
   max-width: max-content;
@@ -62,4 +63,31 @@
 .registerLink {
   margin-left: 8px;
   color: rgb(92, 92, 230);
+}
+
+.input {
+  width: '100%';
+}
+
+.loginButton {
+  width: 420px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px) {
+  .input {
+    width: 270px !important;
+    font-size: 14px;
+    margin-left: 18px;
+  }
+  .cardFromLogin {
+    width: 350px;
+  }
+  .loginButton {
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    margin-left: 12px;
+  }
 }

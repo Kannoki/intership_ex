@@ -1,5 +1,11 @@
 import styles from './Home.module.css';
+import HeaderComponent from '../../components/header/HeaderComponent';
 
 export default function Home() {
-  return <div className={styles.p}>Home</div>;
+  return (
+    <div className=''>
+      {/* <HeaderComponent /> */}
+      home
+    </div>
+  );
 }

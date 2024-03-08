@@ -6,3 +6,17 @@ export interface DataSourceType {
   location: string;
   startDate: string;
 }
+
+export interface DataTypeTable {
+  key?: React.Key;
+  name: string;
+  numberPhone: string;
+  email: string;
+  address?: string;
+  startDate?: any;
+}
+
+export interface UsersTest extends DataTypeTable {
+  organization: string;
+  service: 'Storage' | 'EMS';
+}

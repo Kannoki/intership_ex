@@ -1,9 +1,17 @@
-import { Table } from 'antd';
+import { Table, TableColumnsType } from 'antd';
 import { dataSource } from './UsersData';
 import moment from 'moment';
-import ModalAddUser from '../../../components/ModalAddUser';
+import ModalAddUser from './components/ModalAddUser';
 
-const columns = [
+interface RecordType {
+  name: string;
+  phone: string;
+  email: string;
+  location: string;
+  startDate: string;
+}
+
+const columns: TableColumnsType<RecordType> = [
   {
     title: 'Tên người dùng',
     dataIndex: 'name',

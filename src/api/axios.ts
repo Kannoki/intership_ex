@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LoginResponse } from '../utils/user.type';
-import { getLocalRefreshToken, updateLocalAccessToken } from '../lib/storage';
+import { getRefreshToken, setAccessToken } from '../lib/storage';
 const baseURL = process.env.REACT_APP_API;
 
 const axiosClient = axios.create({
@@ -11,7 +11,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(
-  function (config: any) {
+  function (config: InternalAxiosRequestConfig<any>) {
     const token = localStorage.getItem('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -28,16 +28,16 @@ axiosClient.interceptors.response.use(
     return response.data;
   },
   async function (error) {
-    const originalConfig = error.config;
+    const originConfig = error.config;
     if (error.response.status === 401) {
       try {
-        const url = `${originalConfig.baseURL}/api/auth/token`;
-        const result: any = await getLocalRefreshToken();
+        const url = `${originConfig.baseURL}/api/auth/token`;
+        const result: any = await getRefreshToken();
         const res: LoginResponse = await axios.post(url, {
           refresh_token: result,
         });
-        updateLocalAccessToken(res);
-        return axiosClient(originalConfig);
+        setAccessToken(res);
+        return axiosClient(originConfig);
       } catch (_error) {
         localStorage.clear();
         return Promise.reject(_error);

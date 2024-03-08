@@ -4,6 +4,7 @@ import { Tabs, Typography } from 'antd';
 import type { TabsProps } from 'antd';
 import UsersAll from './usersAll/UsersAll';
 import UsersList from './usersList/UsersList';
+import UsersTesting from './usersTesting/UsersTesting';
 
 const items: TabsProps['items'] = [
   {
@@ -19,7 +20,7 @@ const items: TabsProps['items'] = [
   {
     key: '3',
     label: 'Người dùng thử nghiệm',
-    children: 'Content of Tab Pane 3',
+    children: <UsersTesting />,
   },
 ];
 
@@ -35,7 +36,7 @@ const UsersManagerment: React.FC = () => {
           <Tabs
             defaultActiveKey='1'
             items={items}
-            style={{ padding: '0 24px' }}
+            style={{ padding: '0 40px' }}
           />
         </div>
       </div>

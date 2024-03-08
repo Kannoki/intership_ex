@@ -9,12 +9,14 @@ export interface authState {
   isAuthenticated: boolean;
   logging?: boolean;
   token?: string;
+  navigateToUsers?: boolean;
 }
 const initialState: authState = {
   isAuthenticated: false,
   logging: false,
   token: '',
 };
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -34,10 +36,13 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.token = '';
     },
+    navigateToUsers: (state) => {
+      state.navigateToUsers = true;
+    },
   },
 });
 
-export const { authLogin, loginSuccess, loginFailed, logOut } =
+export const { authLogin, loginSuccess, loginFailed, logOut, navigateToUsers } =
   authSlice.actions;
 
 export const selectIsAuthenticated = (state: RootState) =>
