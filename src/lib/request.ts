@@ -5,8 +5,7 @@ const BASE_URL = process.env.REACT_APP_API_URL || "http://10.20.1.101/";
 
 export const request = axios.create({
   baseURL: BASE_URL,
-  timeout: 30000,
-  withCredentials: true,
+  timeout: 60000,
 });
 
 request.interceptors.request.use((config) => {

@@ -1,50 +1,38 @@
 .app {
-  position: relative;
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: start;
+  display: block;
 }
 .menu {
   width: 100%;
-  padding: 0.3rem;
-  display: flex;
-  justify-content: space-between;
+  padding: 0.2rem;
   background: linear-gradient(
     90deg,
     rgba(57, 106, 252, 1) 100%,
     rgba(41, 72, 255, 1) 100%
   );
 }
-.logo {
+
+.container {
+  background-color: #dfdfdf;
+  height: 100vh;
+  position: relative;
+}
+.table {
   margin: 0;
-  font-size: x-small;
-  text-align: center;
-  color: #fff;
+  background-color: rgb(255, 255, 255);
 }
-.logo span {
-  font-size: small;
-  font-weight: bold;
-}
-.tabs-menu {
-  width: max-content;
-  padding: 0.3rem;
-  background-color: aqua;
-  position: absolute;
-  bottom: 0px;
-  z-index: 100;
+
+:global(.ant-tabs-nav-list) {
+  margin-left: 210px;
+  margin-top: 10px;
 }
 
 @media (min-width: 750px) {
-  .logo {
-    font-size: x-large;
-    text-align: center;
-  }
-  .logo span {
-    font-size: xx-large;
-    font-weight: bold;
+  .title {
+    margin: 10px 50px;
+    text-transform: uppercase;
+    position: absolute;
   }
 }
 

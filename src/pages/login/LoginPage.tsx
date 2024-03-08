@@ -4,6 +4,7 @@ import "./LoginPage.scss";
 import { Button, Form, type FormProps, Input, Tag } from "antd";
 import { login } from "../../apis/auth";
 import { useNavigate } from "react-router-dom";
+import { setToken } from "../../lib/storage";
 type FieldType = {
   username: string;
   password: string;
@@ -18,15 +19,15 @@ export default function LoginPage() {
     try {
       const res = await login(username, password);
       if (res.status === 200) {
-        localStorage.setItem("token", res.data.access_token);
+        // localStorage.setItem("token", res.data.access_token);
+        setToken(res.data.access_token);
         navigate("/Home");
       } else {
         throw new Error(`${res.status} ${res.statusText}`);
       }
     } catch (err) {
-      console.error(err);
+      console.error("this", err);
     }
-    console.log("Success:");
   };
 
   return (
@@ -38,6 +39,7 @@ export default function LoginPage() {
           </p>
 
           <Form
+            style={{ margin: "2rem 0 2rem 0" }}
             name="basic"
             initialValues={{ remember: true }}
             onFinish={onFinish}
@@ -49,7 +51,7 @@ export default function LoginPage() {
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input />
+              <Input placeholder="Username" />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -58,11 +60,15 @@ export default function LoginPage() {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password />
+              <Input.Password placeholder="Password" />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: "100%" }}
+              >
                 Submit
               </Button>
             </Form.Item>
