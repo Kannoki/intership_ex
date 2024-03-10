@@ -1,16 +1,62 @@
+$width_Table_Usser: 96vw;
+
+.boxListUser {
+    margin-top: 1vh;
+}
+.headerListUser {
+    top: 2vh;
+    margin-left: 2vw;
+    width: $width_Table_Usser;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.titleListUser {
+    margin-left: 10px;
+    font-size: 18px;
+}
+.createUserButt {
+    padding: 2px;
+    margin: 5px;
+    border-radius: 3px;
+    background-color: rgb(0, 137, 201);
+    color: #fff;
+}
+.nameInputMobile {
+    display: none;
+}
 .tableUser {
+    margin-top: 2vh;
+    margin-left: 2vw;
     height: 70vh;
+    width: $width_Table_Usser;
 }
 .ant-pagination {
-    position: fixed;
     bottom: 0;
     width: 100vw;
+    position: fixed;
+}
+.buttEditTable {
+    position: fixed;
+    bottom: 0;
 }
 
 @media screen and (max-width: 460px) {
+    .boxListUser {
+        margin-top: 3vh;
+    }
     .ant-pagination {
-        bottom: 10vh;
+        bottom: 12vh;
         height: 15px;
         right: 5px;
+    }
+    .buttEditTable {
+        bottom: 15vh;
+        height: 15px;
+    }
+    .nameInput {
+        display: none;
     }
 }

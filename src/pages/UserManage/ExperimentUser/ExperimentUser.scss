@@ -1,0 +1,72 @@
+.boxTagAndChart {
+    margin-top: 10px;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.TagInf {
+    margin-left: 10px;
+    width: 25vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.TagInfItem {
+    height: 30%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.IconTagInfItem {
+    margin-left: 20px;
+    font-size: 40px;
+}
+.boxTitle {
+    margin-left: 10px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.titleTagInfItem {
+    font-size: 10px;
+    color: rgb(43, 42, 41);
+}
+.dataTagInfItem {
+    font-size: 25px;
+    color: rgb(10, 39, 202);
+}
+.headerListUser {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 667px) {
+    .boxTagAndChart {
+        height: 52vh;
+        flex-direction: column;
+    }
+    .TagInf {
+        margin-left: 0;
+        width: 100vw;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .TagInfItem {
+        width: 30%;
+        min-width: 150px;
+        height: 12vh;
+    }
+    .boxChart {
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .TagInf {
+        overflow-y: scroll;
+    }
+}

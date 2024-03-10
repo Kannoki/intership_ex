@@ -1,5 +1,5 @@
 $bgr_header: rgb(81, 46, 235);
-$color_icon: #fff;
+$color_white: #fff;
 .header {
     background-color: $bgr_header;
 }
@@ -10,10 +10,18 @@ $color_icon: #fff;
     justify-content: space-between;
     background-color: $bgr_header;
 }
-
+.titleMindHeader {
+    font-size: 25px;
+    color: $color_white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.titlePortalHeader {
+    font-size: 15px;
+    color: $color_white;
+}
 .IconHeader {
     display: block;
-    color: $color_icon;
+    color: $color_white;
     background-color: $bgr_header;
 }
 
@@ -23,7 +31,7 @@ $color_icon: #fff;
 .IconBell {
     margin-right: 10px;
     font-size: 20px;
-    color: $color_icon;
+    color: $color_white;
 }
 .avatarIcon {
     margin-right: 0;

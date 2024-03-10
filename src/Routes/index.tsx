@@ -2,8 +2,9 @@
 import routes from '../config/routes';
 //pages
 import Home from '../pages/Home';
-import Login from '../pages/Login';
+import Login from '../pages/auth';
 import UserManage from '../pages/UserManage';
+import DeviceManage from '../pages/DeviceManage';
 
 const publicRoutes: any = [
     {
@@ -17,6 +18,10 @@ const publicRoutes: any = [
     {
         path: routes.usermanage,
         Component: UserManage,
+    },
+    {
+        path: routes.devicemanage,
+        Component: DeviceManage,
     },
 ];
 

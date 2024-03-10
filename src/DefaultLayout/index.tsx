@@ -11,7 +11,7 @@ import {
     DeleteOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, theme, Avatar, Flex, Popover } from 'antd';
+import { Layout, Menu, theme, Avatar, Flex, Popover, Typography } from 'antd';
 import './DefaultLayout.scss';
 import { Content } from 'antd/es/layout/layout';
 import Pages from '../pages';
@@ -65,7 +65,7 @@ const navAvatar = (
 const items1: MenuProps['items'] = [
     getItem(<NavLink to={routes.home}></NavLink>, 'sub1', <AppstoreOutlined />),
     getItem(<NavLink to={routes.usermanage}></NavLink>, 'sub2', <UsergroupAddOutlined />),
-    getItem(<NavLink to={routes.home}></NavLink>, 'sub3', <GlobalOutlined />),
+    getItem(<NavLink to={routes.devicemanage}></NavLink>, 'sub3', <GlobalOutlined />),
     getItem(<NavLink to={routes.home}></NavLink>, 'sub4', <SettingOutlined />),
 ];
 const DefaultLayout: React.FC<PagesProps> = ({ children }) => {
@@ -73,7 +73,10 @@ const DefaultLayout: React.FC<PagesProps> = ({ children }) => {
         <Layout>
             <Header className="header">
                 <Flex className="headerLayout">
-                    <div className="demo-logo"> LOGO</div>
+                    <div className="demo-logo">
+                        <Typography.Text className="titleMindHeader">MIND</Typography.Text>
+                        <Typography.Text className="titlePortalHeader">PORTAL</Typography.Text>
+                    </div>
                     <Menu
                         className="IconHeader"
                         theme="dark"
@@ -89,7 +92,7 @@ const DefaultLayout: React.FC<PagesProps> = ({ children }) => {
                     </div>
                 </Flex>
             </Header>
-            <Content>
+            <Content className="contentLayout">
                 <Pages>{children}</Pages>
             </Content>
         </Layout>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu, Typography, Layout } from 'antd';
-import './UserManage.scss';
+import '../UserManage/UserManage.scss';
 import { Content, Header } from 'antd/es/layout/layout';
-import UseTable from './UserTable';
-import OverView from './OverView';
-import ExperimentUser from './ExperimentUser';
+import DeviceList from './DeviceList';
+import DeviceOverview from './DeviceOverview';
+import DeviceSetting from './DeviceSetting';
 
 const items: MenuProps['items'] = [
     {
@@ -13,11 +13,11 @@ const items: MenuProps['items'] = [
         key: 'nav1',
     },
     {
-        label: 'Danh sách người dùng',
+        label: 'Danh sách thiết bị',
         key: 'nav2',
     },
     {
-        label: 'Người dùng thử nghiệm ',
+        label: 'Cài đặt thiết bị ',
         key: 'nav3',
     },
 ];
@@ -25,21 +25,21 @@ const items: MenuProps['items'] = [
 const listComponent = [
     {
         key: 'nav1',
-        component: <OverView />,
+        component: <DeviceOverview />,
     },
     {
         key: 'nav2',
-        component: <UseTable />,
+        component: <DeviceList />,
     },
     {
         key: 'nav3',
-        component: <ExperimentUser />,
+        component: <DeviceSetting />,
     },
 ];
 
 const UserManage: React.FC = () => {
     const [current, setCurrent] = useState('nav1');
-    const [indexNav, setIndexNav] = useState(<OverView />);
+    const [indexNav, setIndexNav] = useState(<DeviceOverview />);
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
