@@ -1,5 +1,5 @@
 .background {
-  background-image: url('../../image/bg-auth-login.png');
+  background-image: url('../image/bg-auth-login.png');
   padding: 12px 32px;
   position: relative;
   display: flex;

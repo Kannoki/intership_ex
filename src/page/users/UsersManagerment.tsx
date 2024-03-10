@@ -1,4 +1,4 @@
-import styles from './UsersManagerment.module.css';
+import styles from '../../styles/users/UsersManagerment.module.css';
 import React from 'react';
 import { Tabs, Typography } from 'antd';
 import type { TabsProps } from 'antd';

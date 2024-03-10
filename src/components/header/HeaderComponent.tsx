@@ -1,103 +1,138 @@
-import { Avatar, Space, Tabs, TabsProps, Typography } from 'antd';
-import styles from './Header.module.css';
+import styles from '../../styles/Header.module.css';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
-  UserOutlined,
   HomeOutlined,
+  EditOutlined,
+  UserOutlined,
+  BellOutlined,
   SettingOutlined,
-  IeCircleFilled,
 } from '@ant-design/icons';
-import Home from '../../page/home/Home';
-import UsersManagerment from '../../page/users/UsersManagerment';
-import { useEffect, useState } from 'react';
-import SettingPage from '../../page/setting/SettingPage';
-import DeviceManager from '../../page/DeviceManagerment/DeviceManager';
+import { Col, Row, Typography } from 'antd';
 
-type TabPosition = 'top' | 'bottom';
-
-const items: TabsProps['items'] = [
+const NAV_LINKS = [
   {
-    key: '1',
-    label: '',
-    children: <Home />,
-    icon: <HomeOutlined className={styles.icon} />,
+    url: '/',
+    icon: HomeOutlined,
   },
   {
-    key: '2',
-    label: '',
-    children: <UsersManagerment />,
-    icon: <UserOutlined className={styles.icon} />,
+    url: '/users',
+    icon: UserOutlined,
   },
   {
-    key: '3',
-    label: '',
-    children: <DeviceManager />,
-    icon: <IeCircleFilled className={styles.icon} />,
+    url: '/device',
+    icon: EditOutlined,
   },
   {
-    key: '4',
-    label: '',
-    children: <SettingPage />,
-    icon: <SettingOutlined className={styles.icon} />,
+    url: '/setting',
+    icon: SettingOutlined,
   },
 ];
 
-const HeaderComponent = ({ tab = '1' }: { tab: string }) => {
-  const { Text, Title } = Typography;
-  const [tabPosition, setTabPosition] = useState<TabPosition>('top');
+const fontSize = 18;
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setTabPosition('bottom');
-      } else {
-        setTabPosition('top');
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+const Header = () => {
+  const location = useLocation();
+  const { Text, Title } = Typography;
   return (
-    <div className={styles.header_container}>
-      <div className={styles.container}>
-        <div className={styles.mindName}>
-          <Title
-            level={3}
-            style={{
-              color: 'white',
-              margin: '8px 2px 0 20px',
-              fontWeight: 'bold',
-            }}
-            className={styles.mindNameItem}
-          >
+    <>
+      <Row className={styles.header}>
+        <div className={styles.headerIdentifier}>
+          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 28 }}>
             MIND
-          </Title>
-          <Text style={{ color: 'white', marginTop: '12px', fontSize: '16px' }}>
-            PORTAL
           </Text>
+          <Title
+            style={{
+              marginLeft: '5px',
+              marginTop: '16px',
+              color: 'white',
+              fontSize: 20,
+            }}
+          >
+            Portal
+          </Title>
         </div>
-        <div className={styles.table}>
-          <Tabs
-            tabPosition={tabPosition}
-            defaultActiveKey={tab}
-            items={items}
-            style={{ padding: '0 0 10px' }}
-            className={styles.tableDetails}
-            centered
-          />
+        <Col md={4} sm={0} xs={0}>
+          <div className={styles.headerNavigation}>
+            <div className={styles.nav}>
+              {NAV_LINKS.map((item, index) => (
+                <div
+                  key={index}
+                  style={{ display: 'inline', padding: '0 20px' }}
+                >
+                  <Link key={index} to={item.url}>
+                    <item.icon
+                      className={
+                        location.pathname.startsWith(item.url) &&
+                        item.url !== '/'
+                          ? styles.active
+                          : styles.item
+                      }
+                      style={{ fontSize }}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Col>
+        <div className={styles.headerNavigation}>
+          <div className={styles.nav}>
+            <div style={{ display: 'inline', padding: '0 20px' }}>
+              <BellOutlined className={styles.item} style={{ fontSize }} />
+            </div>
+            <div style={{ display: 'inline', padding: '0 20px' }}>
+              <UserOutlined className={styles.item} style={{ fontSize }} />
+            </div>
+          </div>
         </div>
-        <Space wrap size={16}>
-          <Avatar
-            size='large'
-            icon={<UserOutlined />}
-            className={styles.avatar}
-          />
-        </Space>
+      </Row>
+      <div className={`${styles.screen}`}>
+        <div
+          className={` ${styles.flex} ${styles['flex-col']} ${styles['space-y-4']}`}
+          style={{ padding: 10 }}
+        >
+          <Outlet />
+        </div>
       </div>
-    </div>
+      <Row style={{ width: '100%' }}>
+        <Col md={0} sm={24} xs={24}>
+          <Row justify={'center'}>
+            <div
+              className={styles['site-navigation']}
+              style={{ backgroundColor: 'white' }}
+            >
+              <div className={styles.nav}>
+                {NAV_LINKS.map((item, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: 'inline',
+                      padding: '0 20px',
+                    }}
+                  >
+                    <Link key={index} to={item.url}>
+                      <item.icon
+                        style={
+                          location.pathname.startsWith(item.url)
+                            ? { color: 'white', backgroundColor: '#2948ff' }
+                            : { color: '#2948ff' }
+                        }
+                        className={
+                          location.pathname.startsWith(item.url)
+                            ? styles.active
+                            : styles.item
+                        }
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 
-export default HeaderComponent;
+export default Header;

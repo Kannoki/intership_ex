@@ -1,6 +1,6 @@
-import { Table, TableColumnsType, Tag, Typography } from 'antd';
+import { Table, TableColumnsType, TableProps, Tag, Typography } from 'antd';
 import ModalAddDevice from '../../../components/ModalAddDevice';
-import styles from './DeviceList.module.css';
+import styles from '../../../styles/device/DeviceList.module.css';
 import { DeviceType } from '../../../utils/device';
 import { CiSettings } from 'react-icons/ci';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
@@ -32,6 +32,10 @@ const columns: TableColumnsType<DeviceType> = [
   {
     title: 'Thời gian bảo hành còn lại',
     dataIndex: 'expireDate',
+    sorter: {
+      compare: (a: any, b: any) =>
+        moment(a.expireDate).unix() - moment(b.expireDate).unix(),
+    },
   },
   {
     title: 'Tính năng',
@@ -46,6 +50,13 @@ const columns: TableColumnsType<DeviceType> = [
 
 const totalDevice = dataDevice.length;
 
+const onChange: TableProps<DeviceType>['onChange'] = (
+  pagination,
+  filters,
+  sorter,
+  extra
+) => {};
+
 const DeviceList = () => {
   const { Text } = Typography;
   return (
@@ -55,7 +66,9 @@ const DeviceList = () => {
         <Table
           columns={columns}
           dataSource={dataDevice}
-          // onChange={onChange}
+          onChange={onChange}
+          virtual
+          scroll={{ x: 2000, y: 400 }}
         />
       </div>
       <div className={styles.totalItem}>

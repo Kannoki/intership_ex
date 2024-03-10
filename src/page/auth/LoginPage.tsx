@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './LoginPage.module.css';
+import styles from '../../styles/LoginPage.module.css';
 import { Button, Form, Input, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { authLogin } from '../../app/slice/authSlice';

@@ -12,3 +12,10 @@
 :global(.ant-table-cell) {
   padding-left: 57px;
 }
+
+.totalItemDevice {
+  position: absolute;
+  max-width: fit-content;
+  bottom: 22px;
+  right: 100px;
+}

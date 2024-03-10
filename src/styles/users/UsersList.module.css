@@ -9,6 +9,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  margin: 30px 0;
 }
 
 .createModal {
@@ -22,6 +23,10 @@
 @media screen and (max-width: 768px) {
   :global(.ant-tabs) {
     /* width: 400px !important; */
+    padding: 0 20px !important;
     margin-left: -15px;
+  }
+  :global(.ant-tabs-nav-list) {
+    margin: 60px 0 0 20px !important;
   }
 }

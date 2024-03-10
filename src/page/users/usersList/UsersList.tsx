@@ -42,7 +42,12 @@ const UsersList = () => {
   return (
     <div>
       <ModalAddUser />
-      <Table dataSource={dataSource} columns={columns} />;
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        virtual
+        scroll={{ x: 2000, y: 400 }}
+      />
     </div>
   );
 };

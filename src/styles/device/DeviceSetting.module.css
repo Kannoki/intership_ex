@@ -1,0 +1,87 @@
+.userListContainer .footer,
+.userListContainer .textComponent,
+.userListContainer .titleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userListContainer .leftTitle,
+.userListContainer .leftFooter,
+.userListContainer .rightTitle {
+  display: flex;
+  gap: 5px;
+  max-width: fit-content;
+}
+
+.userListContainer .leftTitle {
+  margin-left: 0;
+}
+
+.userListContainer .rightTitle {
+  margin-right: 0;
+}
+
+.userListContainer .footer {
+  width: 1000px;
+  position: absolute;
+  bottom: 15px;
+}
+
+.userListContainer .deviceItemComponent {
+  max-width: 450px;
+  max-height: 250px;
+  border-radius: 10px;
+  border: 1px solid rgba(109, 109, 109, 0.25);
+  box-shadow: 0 4px 4px rgba(109, 109, 109, 0.25),
+    0 4px 4px rgba(97, 97, 97, 0.25);
+  padding: 2px;
+  display: flex;
+  gap: 15px;
+}
+
+.userListContainer .deviceContentContainer {
+  padding: 5px;
+  position: relative;
+}
+
+.userListContainer .textComponent {
+  gap: 30px;
+  margin-top: 5px;
+}
+
+.userListContainer .iconContainer {
+  margin-left: 180px;
+  margin-top: 40px;
+  gap: 15px;
+}
+
+.search {
+  width: 300px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .userListContainer .deviceItemComponent {
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    max-height: 520px;
+  }
+  .userListContainer .deviceItemComponent:last-child {
+    margin-bottom: 30px;
+  }
+  .deviceImage {
+    width: 300px;
+    height: 100px;
+  }
+  :global(.ant-image-img) {
+    width: 320px;
+  }
+  :global(.ant-flex) {
+    padding-left: 10px;
+  }
+  /* .deviceImageContainer {
+    width: 160px;
+  } */
+}

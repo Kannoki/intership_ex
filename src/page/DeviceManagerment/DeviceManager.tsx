@@ -1,5 +1,5 @@
 import { Tabs, TabsProps, Typography } from 'antd';
-import styles from './DeviceManager.module.css';
+import styles from '../../styles/device/DeviceManager.module.css';
 import DeviceAll from './DeviceAll/DeviceAll';
 import DeviceList from './DeviceList/DeviceList';
 import DeviceSetting from './DeviceSetting/DeviceSetting';
@@ -34,7 +34,7 @@ const DeviceManager = () => {
           <Tabs
             defaultActiveKey='1'
             items={items}
-            style={{ padding: '0 40px' }}
+            style={{ padding: '0 20px' }}
           />
         </div>
       </div>

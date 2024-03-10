@@ -1,6 +1,6 @@
 import { Form, Input, Modal, Typography } from 'antd';
 import { useState } from 'react';
-import styles from '../page/users/usersList/UsersList.module.css';
+import styles from '../styles/users/UsersList.module.css';
 import { FaUserGroup } from 'react-icons/fa6';
 import { RiFileAddFill } from 'react-icons/ri';
 

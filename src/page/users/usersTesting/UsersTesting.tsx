@@ -1,5 +1,5 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
-import styles from './UsersTesting.module.css';
+import styles from '../../../styles/users/UsersTesting.module.css';
 import { HiUsers } from 'react-icons/hi';
 import { HiUserGroup } from 'react-icons/hi';
 import {
@@ -170,7 +170,7 @@ const TestUser: FC = () => {
 
   return (
     <div className={styles.usersTestingComponent}>
-      <div className={styles.usersComponents}>
+      <div className={styles.usersComponent}>
         <div className={styles.usersCard}>
           <div className={styles.usersCardItem}>
             <HiUserGroup style={iconUser} />
@@ -207,11 +207,7 @@ const TestUser: FC = () => {
             </Space>
           </div>
           <div className='graph-container'>
-            <Line
-              options={options}
-              data={data}
-              style={{ maxHeight: '250px' }}
-            />
+            <Line options={options} data={data} className={styles.chartItem} />
           </div>
         </div>
       </div>
@@ -220,6 +216,8 @@ const TestUser: FC = () => {
           columns={columns}
           dataSource={UserTestingData}
           onChange={onChange}
+          virtual
+          scroll={{ x: 2000, y: 400 }}
         />
       </div>
       <div className={styles.totalItem}>
