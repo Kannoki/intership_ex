@@ -19,13 +19,15 @@
   box-shadow: 0.05rem 0.05rem 0.1rem 0.1rem rgb(0 0 0 / 0.2);
 }
 
-.logo {
-  font-size: x-large;
+.logo h1 {
+  color: white;
+  font-size: xx-large;
   text-align: center;
+  font-weight: bold;
 }
 .logo span {
-  font-size: xx-large;
-  font-weight: bold;
+  color: white;
+  font-size: x-large;
 }
 
 .input-login {
@@ -40,6 +42,9 @@
   color: white;
 }
 
+.tag-link {
+  color: rgb(0, 81, 255);
+}
 @media (min-width: 750px) {
   .form-card {
     width: 80% !important;

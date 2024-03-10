@@ -1,0 +1,42 @@
+.logo {
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+.menu {
+  height: max-content;
+
+  padding: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(
+    90deg,
+    rgba(57, 106, 252, 1) 100%,
+    rgba(41, 72, 255, 1) 100%
+  );
+}
+
+.nav {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .nav {
+    display: flex;
+    justify-content: center;
+
+    gap: 1rem;
+    align-items: center;
+  }
+  .nav a {
+    color: white;
+    cursor: pointer;
+  }
+  .nav a:pointer-events {
+    color: rgba(41, 72, 255, 1) 100%;
+    background-color: white;
+  }
+}
+
+@media (min-width: 980px) {
+}

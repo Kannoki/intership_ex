@@ -6,11 +6,9 @@ import HomePage from "../pages/home/HomePage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />,
-  },
-  {
-    path: "/Home",
     element: <HomePage />,
     children: [],
   },
+
+  { path: "/login", element: <LoginPage /> },
 ]);

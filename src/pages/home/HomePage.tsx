@@ -1,17 +1,27 @@
 import "./HomePage.scss";
 import { Tabs, Typography } from "antd";
-import type { TabsProps } from "antd";
+
+// import { AppleOutlined } from "@ant-design/icons";
 import Table from "./_components/Table";
+import { getToken } from "../../lib/storage";
+import { redirect } from "react-router-dom";
+import Header from "./_components/Header";
+import NavbarMobile from "./_components/NavbarMobile";
 
-const onChange = (key: string) => {
-  console.log(key);
-};
+export function Loader() {
+  const isAuth = getToken();
+  if (!isAuth) {
+    return redirect("/login");
+  }
+  return null;
+}
 
-const items: TabsProps["items"] = [
+const items = [
   {
     key: "1",
     label: "Tổng quan",
     children: "Content of Tab Pane 1",
+    // icon: <AppleOutlined />,
   },
   {
     key: "2",
@@ -26,47 +36,37 @@ const items: TabsProps["items"] = [
 ];
 
 export default function HomePage() {
-  const { Text, Title } = Typography;
+  const { Title } = Typography;
   return (
     <div className="app">
-      <div className="menu">
-        <div className="">
-          {" "}
+      <Header />
+      <NavbarMobile />
+      <div className="container">
+        <div className="title">
           <Title
             style={{
               margin: "0",
-              color: "white",
-              fontSize: "large",
-              fontWeight: "bold",
+              fontSize: "x-large",
+              background: "white",
             }}
+            level={5}
           >
-            MIND
-            <Text
-              style={{
-                color: "white",
-                fontSize: "small",
-                fontWeight: "normal",
-              }}
-            >
-              PORTAL
-            </Text>
-          </Title>
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="title">
-          <Title style={{ margin: "0" }} level={5}>
             Quản lý người dùng
           </Title>
         </div>
         <div className="table">
           <Tabs
-            defaultActiveKey="1"
             items={items}
-            style={{ padding: "0" }}
+            defaultActiveKey="1"
+            style={{ padding: "1rem" }}
             centered
-          />
+          >
+            {items.map((item) => (
+              <Tabs.TabPane tab={item.label} key={item.key}>
+                {item.label}
+              </Tabs.TabPane>
+            ))}
+          </Tabs>
         </div>
       </div>
     </div>

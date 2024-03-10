@@ -1,15 +1,23 @@
 import React from "react";
 import "./LoginPage.scss";
 
-import { Button, Form, type FormProps, Input, Tag } from "antd";
+import { Button, Form, type FormProps, Input, Tag, Typography } from "antd";
 import { login } from "../../apis/auth";
-import { useNavigate } from "react-router-dom";
-import { setToken } from "../../lib/storage";
+import { redirect, useNavigate } from "react-router-dom";
+import { getToken, setToken } from "../../lib/storage";
+
 type FieldType = {
   username: string;
   password: string;
 };
 
+export function Loader() {
+  const isAuth = getToken();
+  if (isAuth) {
+    return redirect("/");
+  }
+  return null;
+}
 export default function LoginPage() {
   const navigate = useNavigate();
   const onFinish: FormProps<FieldType>["onFinish"] = async ({
@@ -19,9 +27,9 @@ export default function LoginPage() {
     try {
       const res = await login(username, password);
       if (res.status === 200) {
-        // localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("token", res.data.access_token);
         setToken(res.data.access_token);
-        navigate("/Home");
+        navigate("/");
       } else {
         throw new Error(`${res.status} ${res.statusText}`);
       }
@@ -29,14 +37,17 @@ export default function LoginPage() {
       console.error("this", err);
     }
   };
-
+  const { Text, Title } = Typography;
   return (
     <>
       <div className="bgr">
         <div className="form-card">
-          <p className="logo">
-            <span> MIND</span>PORTAL
-          </p>
+          <div className="logo">
+            {" "}
+            <Title>
+              MIND<Text>PORTAL</Text>
+            </Title>
+          </div>
 
           <Form
             style={{ margin: "2rem 0 2rem 0" }}
@@ -51,7 +62,10 @@ export default function LoginPage() {
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input placeholder="Username" />
+              <Input
+                placeholder="Username"
+                style={{ backgroundColor: "transparent", color: "white" }}
+              />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -60,7 +74,10 @@ export default function LoginPage() {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password placeholder="Password" />
+              <Input.Password
+                placeholder="Password"
+                style={{ backgroundColor: "transparent", color: "white" }}
+              />
             </Form.Item>
 
             <Form.Item>
@@ -73,7 +90,7 @@ export default function LoginPage() {
               </Button>
             </Form.Item>
           </Form>
-          <Tag
+          <Title
             style={{
               width: "100%",
               backgroundColor: "transparent",
@@ -85,9 +102,9 @@ export default function LoginPage() {
           >
             Already have account?
             <a className="tag-link" href="#">
-              Login here
+              Register
             </a>
-          </Tag>
+          </Title>
         </div>
       </div>
     </>
