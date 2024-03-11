@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Typography } from "antd";
 import type { TableProps } from "antd";
-import "./Table.scss";
+import "./UserList.scss";
 interface DataType {
   key: string;
   name: string;

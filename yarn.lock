@@ -9967,6 +9967,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+useismobile@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/useismobile/-/useismobile-1.0.4.tgz#2653859b0ead44d328f9f30a7c59713100db3fe1"
+  integrity sha512-EUjKD4IfJb+CHCP7Xaw++vUTl65aIE5LCQOAzyPonOMlRrsfX1Ur5k0GBaEyxTKpSuj3SvvcqK/CdfA+K1gN0Q==
+
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
