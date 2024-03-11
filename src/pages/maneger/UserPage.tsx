@@ -17,18 +17,14 @@ const items = [
   {
     key: "Tổng quan",
     label: "Tổng quan",
-    // children: "Content of Tab Pane 1",
-    // icon: <AppleOutlined />,
   },
   {
     key: "Danh sách người dùng",
     label: "Danh sách người dùng",
-    // children: <Table />,
   },
   {
     key: "Người dùng thử nghiệm",
     label: "Người dùng thử nghiệm",
-    // children: "Content of Tab Pane 3",
   },
 ];
 
@@ -53,16 +49,7 @@ export default function UserPage() {
       {" "}
       <div className="container">
         <div className="title">
-          <Title
-            style={{
-              margin: "0",
-              fontSize: "x-large",
-              background: "white",
-            }}
-            level={5}
-          >
-            Quản lý người dùng
-          </Title>
+          <Title level={5}>Quản lý người dùng</Title>
         </div>
         <Tabs
           items={items}
