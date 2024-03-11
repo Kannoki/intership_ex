@@ -37,15 +37,17 @@ $color_white: #fff;
     margin-right: 0;
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 415px) {
     .IconHeader {
-        position: absolute;
         bottom: 0;
         left: 0;
         width: 100vw;
         height: 8vh;
+        z-index: 3;
         display: flex;
         justify-content: center;
+        position: fixed;
+
         background-color: #125be2;
     }
 }

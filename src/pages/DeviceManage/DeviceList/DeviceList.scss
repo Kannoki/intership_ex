@@ -1,0 +1,17 @@
+.DeviceColum {
+    display: none;
+}
+
+@media screen and (max-width: 667px) {
+    .EditColum {
+        display: none;
+    }
+    .DeviceColum {
+        display: block;
+    }
+}
+@media screen and (max-width: 415px) {
+    .SettingColum {
+        display: none;
+    }
+}

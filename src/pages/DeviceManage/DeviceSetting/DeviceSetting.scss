@@ -1,11 +1,80 @@
+$color_border: #4d4a4a;
+$width_InfProduct: 98%;
 .boxProducts {
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 .boxProductItem {
-    width: 30vw;
-    height: 30vh;
-    background-color: aqua;
+    margin-bottom: 20px;
+    max-width: 440px;
+    height: 200px;
+    min-width: 380px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .imgProduct {
-    height: 30vh;
+    margin-top: 1%;
+    margin-left: 10px;
+    height: 94%;
+    border-radius: 5px;
+}
+.BoxInfProduct {
+    margin-left: 10px;
+    width: 62%;
+    border-left: 0.5px solid $color_border;
+    display: flex;
+    flex-direction: column;
+}
+.TitleProduct {
+    margin-left: 2%;
+    width: $width_InfProduct;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.5px solid $color_border;
+}
+.NameProduct {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 800;
+}
+.IconQr {
+    font-size: 25px;
+}
+.InfProduct {
+    margin-left: 2%;
+    width: $width_InfProduct;
+}
+.InfProductItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.BoxIconInf {
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+@media screen and (max-width: 667px) {
+    .boxProductItem {
+        width: 500px;
+    }
+}
+@media screen and (max-width: 415px) {
+    .IconHeaderBoxProduct {
+        display: none;
+    }
+    .boxProductItem {
+        min-width: 300px;
+        height: 20vh;
+    }
 }

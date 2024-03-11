@@ -34,16 +34,15 @@ $width_Table_Usser: 96vw;
     width: $width_Table_Usser;
 }
 .ant-pagination {
-    bottom: 0;
-    width: 100vw;
-    position: fixed;
 }
 .buttEditTable {
     position: fixed;
     bottom: 0;
 }
+@media screen and (max-width: 667px) {
+}
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 415px) {
     .boxListUser {
         margin-top: 3vh;
     }
@@ -53,7 +52,7 @@ $width_Table_Usser: 96vw;
         right: 5px;
     }
     .buttEditTable {
-        bottom: 15vh;
+        bottom: 11vh;
         height: 15px;
     }
     .nameInput {

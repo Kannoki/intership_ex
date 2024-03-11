@@ -12,7 +12,27 @@
     width: 460px;
 }
 
-@media screen and (max-width: 460px) {
+.DeviceColum {
+    display: block;
+}
+.SettingColum {
+    display: none;
+}
+@media screen and (max-width: 667px) {
+    .EditColum {
+        display: none;
+    }
+    .DeviceColum {
+        display: block;
+    }
+    .SettingColum {
+        display: block;
+    }
+    .ant-table-content {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 415px) {
     .boxNavUserManage {
         flex-direction: column;
     }
@@ -24,5 +44,11 @@
     }
     .navUserManage > li {
         font-size: 8px;
+    }
+    .ant-table-content {
+        font-size: 10px;
+    }
+    .SettingColum {
+        display: none;
     }
 }

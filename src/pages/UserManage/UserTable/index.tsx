@@ -1,5 +1,12 @@
-import { Table, Typography, Breakpoint, Button, Modal, Form, Input } from 'antd';
-import { UsergroupAddOutlined, UserSwitchOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { Table, Typography, Breakpoint, Button, Modal, Form, Input, Tag } from 'antd';
+import {
+    UsergroupAddOutlined,
+    UserSwitchOutlined,
+    PlusOutlined,
+    EllipsisOutlined,
+    SettingOutlined,
+    DeleteOutlined,
+} from '@ant-design/icons';
 import './UserTable.scss';
 import { useState } from 'react';
 
@@ -12,6 +19,7 @@ const dataSource = [
         email: 'hhh@gmail.com',
         address: '10 Downing Street',
         usetime: '12/10/2022',
+        service: 'EMS',
     },
     {
         key: '2',
@@ -41,12 +49,36 @@ const columns = [
         title: 'Địa chỉ',
         dataIndex: 'address',
         key: 'address',
-        // responsive: ['xxl'],
+        className: 'EditColum',
     },
     {
         title: 'Ngày bắt đầu sử dụng',
         dataIndex: 'usetime',
         key: 'usetime',
+        className: 'EditColum',
+    },
+    {
+        title: 'Dịch vụ',
+        dataIndex: 'service',
+        className: 'DeviceColum',
+        key: 'service',
+        render: (service: any) => (
+            <>
+                <Tag color={service === 'EMS' ? 'orange' : 'green'}>{service}</Tag>
+            </>
+        ),
+    },
+    {
+        title: 'Tính năng',
+        className: 'SettingColum',
+        key: 'feature',
+
+        render: () => (
+            <div>
+                <SettingOutlined style={{ fontSize: '24px', color: 'green' }} />
+                <DeleteOutlined style={{ fontSize: '24px', color: 'red' }} />
+            </div>
+        ),
     },
 ];
 

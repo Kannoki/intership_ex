@@ -8,11 +8,29 @@ import {
     UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { Table, Tag, Typography } from 'antd';
-import { Chart as ChartJS } from 'react-chartjs-2';
+import { Chart, Chart as ChartJS } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 import './ExperimentUser.scss';
 import momentLibrary from 'moment';
 import { ChartOptions, LinearScale, CategoryScale } from 'chart.js/auto';
+
+const labels: any = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+const data = {
+    labels: labels,
+    datasets: [
+        {
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1,
+        },
+    ],
+};
+const config = {
+    type: 'line',
+    data: data,
+};
 
 const dataSource = [
     {
@@ -23,7 +41,6 @@ const dataSource = [
         phonenumber: 32,
         usetime: '12/10/2022',
         service: 'EMS',
-        tinhnang: <UserAddOutlined />,
     },
 ];
 
@@ -82,32 +99,36 @@ function ExperimentUser() {
             <div className="boxTagAndChart">
                 {/* tổng quan người dùng */}
                 <div className="TagInf">
-                    <div className="TagInfItem">
-                        <TeamOutlined className="IconTagInfItem" />
-                        <div className="boxTitle">
-                            <Typography.Text className="titleTagInfItem">Tổng số người dùng</Typography.Text>
-                            <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                    <div className="TagInfChild">
+                        <div className="TagInfItem">
+                            <TeamOutlined className="IconTagInfItem" />
+                            <div className="boxTitle">
+                                <Typography.Text className="titleTagInfItem">Tổng số người dùng</Typography.Text>
+                                <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                            </div>
                         </div>
-                    </div>
-                    <div className="TagInfItem">
-                        <UsergroupAddOutlined className="IconTagInfItem" />
-                        <div className="boxTitle">
-                            <Typography.Text className="titleTagInfItem">Người dùng mới trong năm</Typography.Text>
-                            <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                        <div className="TagInfItem">
+                            <UsergroupAddOutlined className="IconTagInfItem" />
+                            <div className="boxTitle">
+                                <Typography.Text className="titleTagInfItem">Người dùng mới trong năm</Typography.Text>
+                                <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                            </div>
                         </div>
-                    </div>
-                    <div className="TagInfItem">
-                        <UserAddOutlined className="IconTagInfItem" />
-                        <div className="boxTitle">
-                            <Typography.Text className="titleTagInfItem">Người dùng mới trong tháng</Typography.Text>
-                            <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                        <div className="TagInfItem">
+                            <UserAddOutlined className="IconTagInfItem" />
+                            <div className="boxTitle">
+                                <Typography.Text className="titleTagInfItem">
+                                    Người dùng mới trong tháng
+                                </Typography.Text>
+                                <Typography.Text className="dataTagInfItem">40000</Typography.Text>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {/* biểu đồ */}
-                <div>
+                <div className="boxChart">
                     <div></div>
-                    <div className="boxChart"></div>
+                    <div>{/* <Line data={data} /> */}</div>
                 </div>
             </div>
             {/* table */}

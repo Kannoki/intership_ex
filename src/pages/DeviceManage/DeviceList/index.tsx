@@ -12,12 +12,14 @@ import { useState } from 'react';
 import { data } from './DeviceListData';
 import { Device } from '../../../models/device';
 import { TableRowSelection } from 'antd/es/table/interface';
+import './DeviceList.scss';
 
 // const { xs, sm, md, lg, xl, xxl } = Breakpoint;
 const columns: TableColumnsType<Device> = [
     {
         title: 'No.',
         render: () => <>01</>,
+        className: 'EditColum',
     },
     {
         title: 'Mã thiết bị',
@@ -39,14 +41,28 @@ const columns: TableColumnsType<Device> = [
     {
         title: 'Thời hạn bảo hành còn lại',
         dataIndex: 'expireDate',
+        className: 'EditColum',
     },
     {
         title: 'Tính năng',
+        className: 'SettingColum',
+
         render: () => (
             <div>
                 <SettingOutlined style={{ fontSize: '24px', color: 'green' }} />
                 <DeleteOutlined style={{ fontSize: '24px', color: 'red' }} />
             </div>
+        ),
+    },
+    {
+        title: 'Dịch vụ',
+        dataIndex: 'service',
+        className: 'DeviceColum',
+        key: 'service',
+        render: (service: any) => (
+            <>
+                <Tag color={service === 'EMS' ? 'orange' : 'green'}>{service}</Tag>
+            </>
         ),
     },
 ];
