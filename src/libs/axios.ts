@@ -6,10 +6,10 @@ import axios, {
 import { getStorage, setStorge } from "../utils";
 import { AuthReponse } from "../models";
 
-const baseURL = process.env.VITE_API;
-
+const baseURL = import.meta.env.VITE_API;
+console.log(baseURL);
 const httpClient = axios.create({
-  baseURL,
+  baseURL: `${baseURL}/api`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

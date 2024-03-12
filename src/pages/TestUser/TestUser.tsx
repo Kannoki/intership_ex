@@ -39,6 +39,7 @@ import { useEffect, useState } from "react";
 import userApi from "../../apis/userApi";
 import { ObjectType, RegisterChartResponse, UserType } from "../../models";
 import moment from "moment";
+import { generateColor } from "../../utils";
 
 ChartJS.register(
     CategoryScale,
@@ -106,42 +107,26 @@ const TestUser = () => {
         return screens.md || screens.lg || screens.xl || screens.xxl;
     };
 
+
+
     const handleGetUserRegister = async () => {
         const response = await getUserRegisterChart();
+
+        const dataSet = Object.entries(response).map(([key, value]) => (
+            {
+                label: key,
+                data: value,
+                borderColor: generateColor(key),
+                fill: false,
+                parsing: {
+                    xAxisKey: "ts",
+                    yAxisKey: "value",
+                }
+            }
+        ))
         const data = {
             labels: response.total,
-            datasets: [
-                {
-                    label: "TOTAL",
-                    data: response.total,
-                    borderColor: "red",
-                    fill: false,
-                    parsing: {
-                        xAxisKey: "ts",
-                        yAxisKey: "value",
-                    },
-                },
-                {
-                    label: "EMS",
-                    data: response.EMS,
-                    borderColor: "red",
-                    fill: false,
-                    parsing: {
-                        xAxisKey: "ts",
-                        yAxisKey: "value",
-                    },
-                },
-                {
-                    label: "STORAGE",
-                    data: response.STORAGE,
-                    borderColor: "blue",
-                    fill: false,
-                    parsing: {
-                        xAxisKey: "ts",
-                        yAxisKey: "value",
-                    },
-                },
-            ],
+            datasets: dataSet,
         };
         setData(data);
     };

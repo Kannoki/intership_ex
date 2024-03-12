@@ -6,7 +6,7 @@ import styles from '../styles/card-device.module.scss'
 const { Text } = Typography
 const CardDevice = () => {
     return (
-        <Card bodyStyle={{ padding: 2 }} style={{ margin: 5 }}>
+        <Card bodyStyle={{ padding: 2 }} className={styles.card}>
             <Row justify={'space-between'}>
                 <Col md={10} sm={0} xs={0}>
                     <Image src={image} preview={false} height={'100%'} className={styles.image} />
